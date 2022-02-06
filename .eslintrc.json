@@ -1,0 +1,28 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended", // React hooks rules
+    "plugin:jsx-a11y/recommended", // Accessibility rules
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "js": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier", "jsx-a11y"],
+  "rules": {
+    "prettier/prettier": "warn",
+    "no-unused-vars": "error",
+    "react/react-in-jsx-scope": "off"
+  }
+}
