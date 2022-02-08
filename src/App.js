@@ -6,6 +6,8 @@ import UserForm from "./components/UserForm";
 function App() {
   const [validationErrors, setValidationErrors] = useState([]);
 
+  console.log(validationErrors);
+
   return (
     <div className="App">
       <div className="formWrapper">

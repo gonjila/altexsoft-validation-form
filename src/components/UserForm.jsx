@@ -128,7 +128,15 @@ function UserForm({ validationErrors, setValidationErrors }) {
         onBlur={onInputBlur}
       />
 
-      <button type="submit" disabled={validationErrors.length > 0}>
+      <button
+        type="submit"
+        disabled={
+          validationErrors[0] ||
+          validationErrors[1] ||
+          validationErrors[2] ||
+          validationErrors[3]
+        }
+      >
         click me
       </button>
     </form>
