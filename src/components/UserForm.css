@@ -27,4 +27,9 @@ form > button {
   margin-top: 20px;
   padding: 10px 0;
   background-color: transparent;
+  cursor: pointer;
+}
+form > button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }

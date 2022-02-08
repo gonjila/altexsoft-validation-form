@@ -11,24 +11,43 @@ function App() {
   // console.log("validationErrors", validationErrors);
 
   const setValidateErrorsFunction = (inputField, rule) => {
-    // TODO if an error already exists in the array then nothing should happen
-    setValidationErrors(errors => [
-      ...errors,
-      {
-        id: Math.random(),
-        inputField,
-        type: rule.type,
-        message: rule.message,
-      },
-    ]);
+    setValidationErrors(errors => {
+      return [
+        ...errors,
+        {
+          id: Math.random(),
+          inputField,
+          type: rule.type,
+          message: rule.message,
+        },
+      ];
+    });
   };
+
+  const deleteValidationErrorFunction = (inputField, type) => {
+    setValidationErrors(errors => {
+      const errorIndex = errors.findIndex(
+        error => error.inputField === inputField && error.type === type
+      );
+
+      console.log(errorIndex);
+
+      return [...errors.splice(0, errorIndex), ...errors.splice(errorIndex)];
+    });
+  };
+
+  console.log(validationErrors);
 
   return (
     <div className="App">
       <div className="formWrapper">
         <h1>React Form</h1>
 
-        <UserForm setValidationErrors={setValidateErrorsFunction} />
+        <UserForm
+          validationErrors={validationErrors}
+          setValidationErrors={setValidateErrorsFunction}
+          deleteValidationError={deleteValidationErrorFunction}
+        />
 
         <div className="errorWrapper">
           {validationErrors.map(error => {
