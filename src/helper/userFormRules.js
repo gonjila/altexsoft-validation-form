@@ -38,12 +38,12 @@ const userFormRules = [
     validateOn: "submit",
   },
   {
-    inputName: "sex",
+    inputName: "gender",
     rules: [{ type: "required", message: "Field is required" }],
     validateOn: "blur",
   },
   {
-    inputName: "sex",
+    inputName: "gender",
     rules: [{ type: "required", message: "(Submit) Field is required" }],
     validateOn: "submit",
   },

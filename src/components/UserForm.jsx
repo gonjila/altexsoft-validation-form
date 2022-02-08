@@ -4,7 +4,12 @@
 import { useRef } from "react";
 
 import "./UserForm.css";
-import { validateName, validateEmail } from "../helper/validations";
+import {
+  validateName,
+  validateEmail,
+  validateGender,
+  validateAge,
+} from "../helper/validations";
 
 function UserForm({
   validationErrors,
@@ -13,14 +18,14 @@ function UserForm({
 }) {
   const nameRef = useRef();
   const emailRef = useRef();
-  const browser = useRef();
+  const genderRef = useRef();
   const ageRef = useRef();
 
   const onFormSubmit = e => {
     e.preventDefault();
     const enteredName = nameRef.current.value;
     const enteredEmail = emailRef.current.value;
-    const enteredBrowser = browser.current.value;
+    const enteredGender = genderRef.current.value;
     const enteredAge = ageRef.current.value;
 
     const nameValidation = validateName(
@@ -34,7 +39,19 @@ function UserForm({
       emailRef.current.name,
       enteredEmail
     );
-    console.log("emailValidation", emailValidation);
+
+    const GenderValidation = validateGender(
+      "submit",
+      genderRef.current.name,
+      enteredGender
+    );
+
+    const ageValidation = validateAge(
+      "submit",
+      ageRef.current.name,
+      enteredAge
+    );
+    console.log("ageValidation", ageValidation);
 
     // setValidationErrors(nameRef.current.name, isRequired[0]);
   };
@@ -102,10 +119,10 @@ function UserForm({
       />
 
       <select
-        name="sex"
+        name="gender"
         id="browsers"
         defaultValue="select"
-        ref={browser}
+        ref={genderRef}
         onBlur={onInputBlur}
       >
         <option value="select">Select sex</option>
