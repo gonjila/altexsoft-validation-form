@@ -35,6 +35,10 @@
     "no-unused-vars": "warn",
     "no-console": "warn",
     "react/react-in-jsx-scope": "off",
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "import/extensions": "off",
+    "react/prop-types": "off",
+    "array-callback-return": "off",
+    "import/prefer-default-export": "off"
   }
 }
