@@ -1,9 +1,6 @@
 import userFormRules from "./userFormRules";
 
-// მიიღოს რაღაც მონაცემები და დააბრუნოს {}
 export const validateName = (event, name, value) => {
-  console.log("event", event, "value", value);
-
   const filterdValidation = userFormRules.filter(
     validation =>
       validation.inputName === name && validation.validateOn === event
@@ -43,5 +40,27 @@ export const validateName = (event, name, value) => {
     };
   }
 
+  return {};
+};
+
+export const validateEmail = (event, name, value) => {
+  const regEx = /^[\w-.0-9]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  const filterdValidation = userFormRules.filter(
+    validation =>
+      validation.inputName === name && validation.validateOn === event
+  );
+  const formatRequired = filterdValidation[0].rules.filter(
+    rule => rule.type === "emailFormat"
+  );
+
+  if (value.trim() === "") {
+    const isRequired = filterdValidation[0].rules.filter(
+      rule => rule.type === "required"
+    );
+    return { id: Math.random(), inputField: name, ...isRequired[0] };
+  }
+  if (!regEx.exec(value)) {
+    return { id: Math.random(), inputField: name, ...formatRequired[0] };
+  }
   return {};
 };

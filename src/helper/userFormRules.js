@@ -25,7 +25,7 @@ const userFormRules = [
     inputName: "email",
     rules: [
       { type: "required", message: "Field is required" },
-      { type: "email", message: "Incorrect format" },
+      { type: "emailFormat", message: "Incorrect format" },
     ],
     validateOn: "blur",
   },
@@ -33,7 +33,7 @@ const userFormRules = [
     inputName: "email",
     rules: [
       { type: "required", message: "(Submit) Field is required" },
-      { type: "email", message: "(Submit) Incorrect format" },
+      { type: "emailFormat", message: "(Submit) Incorrect format" },
     ],
     validateOn: "submit",
   },

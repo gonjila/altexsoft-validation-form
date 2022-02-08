@@ -4,7 +4,7 @@
 import { useRef } from "react";
 
 import "./UserForm.css";
-import { validateName } from "../helper/validations";
+import { validateName, validateEmail } from "../helper/validations";
 
 function UserForm({
   validationErrors,
@@ -28,7 +28,14 @@ function UserForm({
       nameRef.current.name,
       enteredName
     );
-    console.log("nameValidation", nameValidation);
+
+    const emailValidation = validateEmail(
+      "submit",
+      emailRef.current.name,
+      enteredEmail
+    );
+    console.log("emailValidation", emailValidation);
+
     // setValidationErrors(nameRef.current.name, isRequired[0]);
   };
 
@@ -88,7 +95,7 @@ function UserForm({
 
       <input
         name="email"
-        type="email"
+        type="text"
         placeholder="Email"
         ref={emailRef}
         onBlur={onInputBlur}
