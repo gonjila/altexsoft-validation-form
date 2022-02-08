@@ -32,7 +32,7 @@ export const validateName = (event, name, value) => {
     };
   }
 
-  if (value.length < nameMaxLength[0].value) {
+  if (value.length > nameMaxLength[0].value) {
     return {
       id: Math.random(),
       inputField: name,
@@ -40,7 +40,7 @@ export const validateName = (event, name, value) => {
     };
   }
 
-  return {};
+  return null;
 };
 
 export const validateEmail = (event, name, value) => {
@@ -62,7 +62,7 @@ export const validateEmail = (event, name, value) => {
   if (!regEx.exec(value)) {
     return { id: Math.random(), inputField: name, ...formatRequired[0] };
   }
-  return {};
+  return null;
 };
 
 export const validateGender = (event, name, value) => {
@@ -78,7 +78,7 @@ export const validateGender = (event, name, value) => {
 
     return { id: Math.random(), inputField: name, ...isRequired[0] };
   }
-  return {};
+  return null;
 };
 
 export const validateAge = (event, name, value) => {
@@ -109,5 +109,5 @@ export const validateAge = (event, name, value) => {
   if (value > maxAge[0].value) {
     return { id: Math.random(), inputField: name, ...maxAge[0] };
   }
-  return {};
+  return null;
 };

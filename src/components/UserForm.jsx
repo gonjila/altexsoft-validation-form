@@ -1,6 +1,3 @@
-// FIXME "eslint-disable" წასაშლელია
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
 import { useRef } from "react";
 
 import "./UserForm.css";
@@ -11,11 +8,7 @@ import {
   validateAge,
 } from "../helper/validations";
 
-function UserForm({
-  validationErrors,
-  setValidationErrors,
-  deleteValidationError,
-}) {
+function UserForm({ validationErrors, setValidationErrors }) {
   const nameRef = useRef();
   const emailRef = useRef();
   const genderRef = useRef();
@@ -51,53 +44,50 @@ function UserForm({
       ageRef.current.name,
       enteredAge
     );
-    console.log("ageValidation", ageValidation);
 
-    // setValidationErrors(nameRef.current.name, isRequired[0]);
+    const submitValidations = [
+      nameValidation,
+      emailValidation,
+      GenderValidation,
+      ageValidation,
+    ];
+
+    setValidationErrors(submitValidations);
   };
 
-  const onInputBlur = event => {
-    // const filteredRules = userFormRules.filter(
-    //   rule => rule.inputName === event.target.name && rule.validateOn === "blur"
-    // );
-    // filteredRules[0].rules.map(rule => {
-    //   if (event.target.value.trim() === "" && rule.type === "required") {
-    //     setValidationErrors(event.target.name, rule);
-    //   }
-    //   if (event.target.name === "name") {
-    //     if (
-    //       rule.type === "minLength" &&
-    //       event.target.value.length < rule.value
-    //     ) {
-    //       setValidationErrors(event.target.name, rule);
-    //     } else if (
-    //       rule.type === "maxLength" &&
-    //       event.target.value.length > rule.value
-    //     ) {
-    //       setValidationErrors(event.target.name, rule);
-    //     }
-    //   }
-    //   if (event.target.name === "email" && rule.type === "email") {
-    //     const regEx = /^[\w-.0-9]+@([\w-]+\.)+[\w-]{2,4}$/g;
-    //     if (!regEx.exec(emailRef.current.value)) {
-    //       setValidationErrors(event.target.name, rule);
-    //     }
-    //   }
-    //   if (event.target.name === "sex" && event.target.value === "select") {
-    //     setValidationErrors(event.target.name, rule);
-    //   }
-    //   if (event.target.name === "age") {
-    //     if (event.target.value < rule.value && rule.type === "min") {
-    //       setValidationErrors(event.target.name, rule);
-    //     } else if (event.target.value > rule.value && rule.type === "max") {
-    //       setValidationErrors(event.target.name, rule);
-    //     } else {
-    //       deleteValidationError(event.target.name, rule.type);
-    //     }
-    //   } else {
-    //     deleteValidationError(event.target.name, rule.type);
-    //   }
-    // });
+  const onInputBlur = () => {
+    const nameValidation = validateName(
+      "blur",
+      nameRef.current.name,
+      nameRef.current.value
+    );
+
+    const emailValidation = validateEmail(
+      "blur",
+      emailRef.current.name,
+      emailRef.current.value
+    );
+
+    const GenderValidation = validateGender(
+      "blur",
+      genderRef.current.name,
+      genderRef.current.value
+    );
+
+    const ageValidation = validateAge(
+      "blur",
+      ageRef.current.name,
+      ageRef.current.value
+    );
+
+    const blurValidations = [
+      nameValidation,
+      emailValidation,
+      GenderValidation,
+      ageValidation,
+    ];
+
+    setValidationErrors(blurValidations);
   };
 
   return (
